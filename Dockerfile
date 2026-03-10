@@ -1,9 +1,11 @@
-FROM python:3.10
+FROM frappe/erpnext-worker:v15
 
-WORKDIR /app
+USER root
 
-COPY . .
+WORKDIR /workspace
 
-RUN pip install --upgrade pip
+COPY . /workspace/testerp
 
-CMD ["python3"]
+RUN pip install -e /workspace/testerp
+
+USER frappe
